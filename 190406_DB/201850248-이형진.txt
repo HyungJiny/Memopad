@@ -1,0 +1,20 @@
+show databases;
+
+use employees;
+
+show tables;
+
+select count(*) from employees;
+
+select * from employees limit 10;
+
+select * from employees 
+join dept_emp on employees.emp_no = dept_emp.emp_no 
+join departments  on dept_emp.dept_no = departments.dept_no 
+where employees.emp_no=10001;
+
+select avg(salaries.salary) from employees 
+join dept_emp on employees.emp_no = dept_emp.emp_no 
+join departments on dept_emp.dept_no = departments.dept_no 
+join salaries on employees.emp_no = salaries.emp_no 
+where departments.dept_name = 'Development';

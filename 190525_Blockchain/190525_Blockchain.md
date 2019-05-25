@@ -39,4 +39,31 @@
 
 #### Private Data Collection
 - orderer를 거치지 않고, 피어들끼리 데이터를 공유, 접근할 수 있는 방법
-- 
+
+#### Consensus Algorithm
+- 사실상 합의 알고리즘이 존재하지 않음
+- 단순히 2초마다 orderer 패키징을 진행함
+    - 순서대로 쌓기만 함
+- CFT
+    - Kafka (=Queueing, Buffering)
+    - 서버가 죽지 않도록 관리해주는 것
+    - Zookeeper - High Availabity(고가용성)
+        1. Master - Slave(수동) : 다음 후보가 미리 정해져있음
+        2. Active - Standby : election, 다음 후보를 새로 뽑음
+        3. Active - Active
+- BFT
+    - PBFT 사용(0.6)
+    - SBFT 2.0
+
+### 보안
+- 공개키와 비밀키
+    - 공개키(RSA)가 보안 수준은 더 높음
+    - 공개키 방식이 느리기 때문에 비밀키도 사용
+    - 속도에 무관하면 공개키를 이용하는 것이 무조건 좋음
+- 최근 공개키 방식의 대표인 RSA를 개선하고 있음
+    - el gamal
+    - eliptic curve(타원 곡선)
+- 인증서
+    - 거래 당사자가 신뢰할 수 있다는 증명서
+    - 웹의 경우 베리사인(Verisign)사가 발급
+        - Verisign : Visa와 Master가 만든것
